@@ -14,3 +14,8 @@ class Gender(ChoiceEnum):
     MALE = 'MALE'
     FEMALE = 'FEMALE'
     NA = 'NA'
+
+
+class LandRecordType(ChoiceEnum):
+    FARM = 'FARM'
+    MINING = 'MINING'

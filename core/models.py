@@ -1,6 +1,6 @@
 from django.db import models
 
-from core.enum import Gender
+from core.enum import Gender, LandRecordType
 
 
 class ReligiousOrder(models.Model):
@@ -19,5 +19,28 @@ class Owner(models.Model):
     comments = models.TextField()
     privileged_observations = models.TextField()
     religious_order = models.ForeignKey(
-        ReligiousOrder, on_delete=models.SET_NULL, null=True
+        ReligiousOrder, on_delete=models.SET_NULL, null=True,
+        related_name='owners'
+    )
+
+
+class Captaincy(models.Model):
+    name = models.CharField(max_length=128)
+    initials = models.CharField(max_length=3)
+
+
+class LandRecord(models.Model):
+    reference = models.CharField(max_length=10, unique=True)
+    location = models.TextField()
+    nearest_river = models.CharField(max_length=128, null=False)
+    hectare_area = models.FloatField()
+    published = models.BooleanField(default=False)
+    land_record_type = models.CharField(
+        max_length=128, choices=LandRecordType.choices()
+    )
+    captaincy = models.ForeignKey(
+        Captaincy, on_delete=models.CASCADE, related_name='land_records'
+    )
+    limits = models.ManyToManyField(
+        'self', blank=True, related_name='limits'
     )
