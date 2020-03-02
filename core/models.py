@@ -1,6 +1,6 @@
 from django.db import models
 
-from core.enum import Gender, LandRecordType
+from core.enum import Gender, LandRecordType, LandHistory
 
 
 class ReligiousOrder(models.Model):
@@ -35,6 +35,7 @@ class LandRecord(models.Model):
     nearest_river = models.CharField(max_length=128, null=False)
     hectare_area = models.FloatField()
     published = models.BooleanField(default=False)
+    landHistory = models.CharField(max_length=128, choices=LandHistory.choices())
     land_record_type = models.CharField(
         max_length=128, choices=LandRecordType.choices()
     )

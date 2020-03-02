@@ -19,3 +19,10 @@ class Gender(ChoiceEnum):
 class LandRecordType(ChoiceEnum):
     FARM = 'FARM'
     MINING = 'MINING'
+
+class LandHistory(ChoiceEnum):
+    SOLD = 'SOLD'
+    PRIMORDIAL = 'PRIMORDIAL'
+    VACANT = 'VACANT'
+    AFORADA = 'AFORADA' ##procurar tradução melhor para aforada 
+
