@@ -52,7 +52,7 @@ class Justification(models.Model):
 
 
 class Request(models.Model):
-    date = models.DateField()
+    dateRequest = models.DateField()
     same_measure = models.BooleanField(default=False)
     comments = models.TextField()
     privileged_observations = models.TextField()
@@ -61,3 +61,14 @@ class Request(models.Model):
         LandRecord, on_delete=models.SET_NULL, related_name='request'
     )
     justification = models.ManyToManyField(Justification)
+
+class Confirmation(models.Model): #prate mais burocrática 
+    dateConfirmation = models.DateField()
+    confirmationLisbon = models.BooleanField(default=True) #se a carta foi confirmada em Lisboa
+    concessionPresential = models.BooleanField(default=True) #se a concessão foi presencial
+    concessionEqual = models.BooleanField(default=True) #caso tenha mais de um sesmeiro para a terra, a divissão dela foi de forma igualitária
+    kingName = models.CharField(max_length=128) #nomde do rei que aprovou a cooncessão e a confirmação
+    tearsuryName = models.CharField(max_length=128) #nome do tesoureiro do registro da carta
+    scrivener = models.CharField(max_length=128) #escrivão da carta
+    meiasAnatas = models.CharField(max_length=128) #um imposto cobrado pela carta
+    otherValue = models.CharField(max_length=128) #outros valores cobrados
