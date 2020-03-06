@@ -26,3 +26,7 @@ class LandHistory(ChoiceEnum):
     VACANT = 'VACANT'
     AFORADA = 'AFORADA' ##procurar tradução melhor para aforada 
 
+class RequestType(ChoiceEnum):
+    CONCESSION = 'CONCESSION'
+    REQUEST = 'REQUEST'
+    CONFIRMATION = 'CONFIRMATION'

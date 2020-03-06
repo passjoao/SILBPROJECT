@@ -1,6 +1,6 @@
 from django.db import models
 
-from core.enum import Gender, LandRecordType, LandHistory
+from core.enum import Gender, LandRecordType, LandHistory, RequestType
 
 
 class ReligiousOrder(models.Model):
@@ -45,3 +45,19 @@ class LandRecord(models.Model):
     limits = models.ManyToManyField(
         'self', blank=True, related_name='limits'
     )
+
+
+class Justification(models.Model):
+    justification = models.CharField(max_length=128)
+
+
+class Request(models.Model):
+    date = models.DateField()
+    same_measure = models.BooleanField(default=False)
+    comments = models.TextField()
+    privileged_observations = models.TextField()
+    requestType = models.CharField(choices=RequestType.choices())
+    record_id = models.ForeignKey(
+        LandRecord, on_delete=models.SET_NULL, related_name='request'
+    )
+    justification = models.ManyToManyField(Justification)
