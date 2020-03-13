@@ -1,6 +1,6 @@
 from django.db import models
 
-from core.enum import Gender, LandRecordType, LandHistory, RequestType
+from core.enum import Gender, LandRecordType, LandHistory, RequestType, Titles
 
 
 class ReligiousOrder(models.Model):
@@ -62,13 +62,54 @@ class Request(models.Model):
     )
     justification = models.ManyToManyField(Justification)
 
-class Confirmation(models.Model): #prate mais burocrática 
+
+class Confirmation(models.Model): #Classe que define se a carta foi confirmada
     dateConfirmation = models.DateField()
     confirmationLisbon = models.BooleanField(default=True) #se a carta foi confirmada em Lisboa
     concessionPresential = models.BooleanField(default=True) #se a concessão foi presencial
     concessionEqual = models.BooleanField(default=True) #caso tenha mais de um sesmeiro para a terra, a divissão dela foi de forma igualitária
     kingName = models.CharField(max_length=128) #nomde do rei que aprovou a cooncessão e a confirmação
-    tearsuryName = models.CharField(max_length=128) #nome do tesoureiro do registro da carta
-    scrivener = models.CharField(max_length=128) #escrivão da carta
+    treasurerName = models.CharField(max_length=128) #nome do tesoureiro do registro da carta
+    scrivener = models.CharField(max_length=128) #escrivão da carta de confirmaçao
     meiasAnatas = models.CharField(max_length=128) #um imposto cobrado pela carta
     otherValue = models.CharField(max_length=128) #outros valores cobrados
+
+
+class Authority(models.Model):
+    name = models.CharField(max_length=128)
+    title = models.CharField(choices=Titles.choices())
+
+
+class Deferment(models.Model):#classe pada parte de deferimento da carta e tramitações
+    defered = models.BooleanField(default=True)
+    favorable = models.BooleanField(default=True)#se a concessão foi favorável
+    scriviner = models.CharField(max_length=128)#escrivão do documento de deferimento
+    comments = models.TextField()
+    privileged_observations = models.TextField()
+    sources = models.TextField()#referencia do documento físico
+    authority = models.ForeignKey(
+        Authority, on_delete=models.SET_NULL, related_name='authority'
+    )
+    record = models.ForeignKey(
+        LandRecord, on_delete=models.SET_NULL, related_name='request'
+    )
+    tramitations = models.ForeignKey(
+        'Tramitations', on_delete=models.SET_NULL, related_name='tramitations'
+    )
+
+
+class Tramitations(models.Model):
+    pendingProvider = models.BooleanField(default=False)
+    ProviderName = models.CharField(max_length=128)
+
+    pendingAttorney = models.BooleanField(default=False)
+    attorneyName = models.CharField(max_length=128)
+    
+    pendingAssembly = models.BooleanField(default=False)
+    assemblyName = models.CharField(max_length=128)
+    
+    pendingScriviner = models.BooleanField(default=False)
+    scrivinerName = models.CharField(max_length=128)
+
+
+ 
