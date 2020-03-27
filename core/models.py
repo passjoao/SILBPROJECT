@@ -35,7 +35,7 @@ class LandRecord(models.Model):
     nearest_river = models.CharField(max_length=128, null=False)
     hectare_area = models.FloatField()
     published = models.BooleanField(default=False)
-    landHistory = models.CharField(max_length=128, choices=LandHistory.choices())
+    landHistory = models.CharField(max_length=128, choices=LandHistory.choices(), null=True)
     land_record_type = models.CharField(
         max_length=128, choices=LandRecordType.choices()
     )
@@ -56,9 +56,9 @@ class Request(models.Model):
     same_measure = models.BooleanField(default=False)
     comments = models.TextField()
     privileged_observations = models.TextField()
-    requestType = models.CharField(choices=RequestType.choices())
+    requestType = models.CharField(max_length=128, choices=RequestType.choices())
     record_id = models.ForeignKey(
-        LandRecord, on_delete=models.SET_NULL, related_name='request'
+        LandRecord, on_delete=models.SET_NULL, related_name='request', null=True
     )
     justification = models.ManyToManyField(Justification)
 
@@ -77,7 +77,7 @@ class Confirmation(models.Model): #Classe que define se a carta foi confirmada
 
 class Authority(models.Model):
     name = models.CharField(max_length=128)
-    title = models.CharField(choices=Titles.choices())
+    title = models.CharField(max_length=128, choices=Titles.choices())
 
 
 class Deferment(models.Model):#classe pada parte de deferimento da carta e tramitações
@@ -88,13 +88,13 @@ class Deferment(models.Model):#classe pada parte de deferimento da carta e trami
     privileged_observations = models.TextField()
     sources = models.TextField()#referencia do documento físico
     authority = models.ForeignKey(
-        Authority, on_delete=models.SET_NULL, related_name='authority'
+        Authority, on_delete=models.SET_NULL, related_name='authority', null = True
     )
-    record = models.ForeignKey(
-        LandRecord, on_delete=models.SET_NULL, related_name='request'
+    record_id = models.ForeignKey(
+        LandRecord, on_delete=models.SET_NULL, related_name='request_Deferment', null=True
     )
     tramitations = models.ForeignKey(
-        'Tramitations', on_delete=models.SET_NULL, related_name='tramitations'
+        'Tramitations', on_delete=models.SET_NULL, related_name='tramitations', null=True
     )
 
 
