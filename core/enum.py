@@ -21,15 +21,15 @@ class LandRecordType(ChoiceEnum):
     MINING = 'MINING'
 
 class LandHistory(ChoiceEnum):
-    SOLD = 'SOLD'
-    PRIMORDIAL = 'PRIMORDIAL'
-    VACANT = 'VACANT'
-    AFORADA = 'AFORADA' ##procurar tradução melhor para aforada 
+    SOLD = 'Vendida'
+    PRIMORDIAL = 'Primordial'
+    VACANT = 'Devoluta'
+    AFORADA = 'Aforada' ##procurar tradução melhor para aforada 
 
 class RequestType(ChoiceEnum):
-    CONCESSION = 'CONCESSION'
-    REQUEST = 'REQUEST'
-    CONFIRMATION = 'CONFIRMATION'
+    CONCESSION = 'Concessão'
+    REQUEST = 'Requisição'
+    CONFIRMATION = 'Confirmação'
 
 class Titles(ChoiceEnum):
     CAPITAOMOR = 'CAPITAO-MOR'
