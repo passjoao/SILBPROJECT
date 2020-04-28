@@ -1,0 +1,136 @@
+{% load static %}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.welcome {
+    background: url({% static 'images/silb-fundo.jpg' %}) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    width: 100%;
+}
+
+.login {
+    margin-left: 5px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.register {
+    margin-left: 5px;
+    position: absolute;
+    top: 10px;
+    right: 102px;
+}
+
+.action-buttons {
+    position: relative;
+}
+
+.welcome-caption h3 {
+    margin: 0;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    text-align: right;
+    color: #479fb5;
+    font-family: 'Livvic', sans-serif;
+}
+
+
+/* Login Form */
+
+.login-form {
+    width: 100%;
+    min-height: 100vh;
+    background: pink;
+    height: 100%;
+    background-color: #e6e7e8;
+    color: #ff00ff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 0.87rem;
+    line-height: 1.5;
+}
+
+.login-container {
+    background-color: #479fb5;
+    width: 400px;
+    height: 350px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 0 20px;
+    color: ff00ff;
+}
+
+.login-container.shadow {
+    -webkit-box-shadow: 3px 3px 5px 0px black;
+    /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 3px 3px 5px 0px black;
+    /* Firefox 3.5 - 3.6 */
+    box-shadow: 3px 3px 5px 0px black;
+    /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.login-container h4 {
+    font-family: 'Livvic', sans-serif;
+    background-color: white;
+    color: #59636e !important;
+    padding: 3px 0px;
+}
+
+.login-container form {
+    padding: 0 20px;
+    color: #ffffff;
+}
+
+.input-field input {
+    color: #ffffff;
+}
+
+.login {
+    margin-top: 80px;
+}
+.lost{
+    color: #ffffff;
+}
+.login-btn {
+    border: 2px solid white !important;
+    background: transparent !important;
+}
+
+.waves-button-input {
+    color: #ffffff;
+}
+
+.login-btn:hover {
+    background: transparent !important;
+    color: #ffffff;
+}
+.input-field>label {
+    color: #ffffff
+}
+
+input:not([type]),
+input[type=text]:not(.browser-default):focus,
+input[type=password]:not(.browser-default),
+input[type=email]:not(.browser-default),
+input[type=url]:not(.browser-default),
+input[type=time]:not(.browser-default),
+input[type=date]:not(.browser-default),
+input[type=datetime]:not(.browser-default),
+input[type=datetime-local]:not(.browser-default),
+input[type=tel]:not(.browser-default),
+input[type=number]:not(.browser-default),
+input[type=search]:not(.browser-default),
+textarea.materialize-textarea {
+    color: #ffffff;
+}

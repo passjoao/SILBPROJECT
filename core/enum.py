@@ -21,8 +21,24 @@ class LandRecordType(ChoiceEnum):
     MINING = 'MINING'
 
 class LandHistory(ChoiceEnum):
-    SOLD = 'SOLD'
-    PRIMORDIAL = 'PRIMORDIAL'
-    VACANT = 'VACANT'
-    AFORADA = 'AFORADA' ##procurar tradução melhor para aforada 
+    SOLD = 'Vendida'
+    PRIMORDIAL = 'Primordial'
+    VACANT = 'Devoluta'
+    AFORADA = 'Aforada' ##procurar tradução melhor para aforada 
 
+class RequestType(ChoiceEnum):
+    CONCESSION = 'Concessão'
+    REQUEST = 'Requisição'
+    CONFIRMATION = 'Confirmação'
+
+class Titles(ChoiceEnum):
+    CAPITAOMOR = 'CAPITAO-MOR'
+    GORVERNADOR = 'GORVERNADOR'
+    GORVERNADORGERAL = 'GORVERNADOR GERAL'
+    CAPITAO = 'CAPITAO'
+    VICEREI = 'VICE REI'
+    CAMARA = 'CÂMARA'
+    TRIUNVIRATO = 'TRIUNVIRATO'
+    PRESIDENTEPROVINCIAL = 'PRESIDENTE PROVINCIAL'
+    CAPITAOLOCOTENENTE = 'CAPITAO LOCO TENENTE'
+    

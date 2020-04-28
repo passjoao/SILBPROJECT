@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Livvic:500&display=swap" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'css/loginStyle.css' %}" rel="stylesheet" type="text/css">
+
+    <title>Login Form</title>
+</head>
+
+<body>
+
+<div class="login-form">
+
+    <div class="login-container shadow">
+            {% if form.errors %}
+                <p style="color:red">Usuário ou senha errados! Tente novamente.</p>
+            {% endif %}
+
+            {% if next %}
+              {% if user.is_authenticated %}
+                <p style="color:red">Sua conta Não tem permissão pra essa página, entre em contato com o administrador do Site!</p>
+              {% endif %}
+            {% endif %}
+        <div class="row">
+            <h4 class="center white"> SILB - Admin </h4>
+        </div>
+
+        <br>
+        <form class="login form col s12" action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                </div>
+
+                <div class="input-field col s12">
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                </div>
+
+                <div class="col s12">
+                    <input type="submit" value="Entrar" class="btn btn-small login-btn waves-effect white-text">
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <p><a href="{% url 'password_reset' %}" class="lost">Lost password?</a></p>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    </div>
+
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
