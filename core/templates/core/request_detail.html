@@ -15,46 +15,50 @@
   <table class="table medium table-striped" id="registro">
 <!--      REFERENCIAS     -->
     <td class="text-center font-weight-bold" colspan="2">Referências</td>
-    <tr><td width="130">Referência</td><td width="500">{{request.reference}}</td></tr>
-    <tr><td width="130">Data de Concessão</td><td width="500">{{request.deferment.concessionDate}}</td></tr>
+    <tr><td width="130">Referência</td><td width="500">{{request.record_id.reference}}</td></tr>
+    <tr><td width="130">Data de Concessão</td><td width="500">{{request.dateRequest}}</td></tr>
 <!--      SESMARIA     -->
       <td class="text-center font-weight-bold" colspan="2">Sesmaria</td>
-    <tr><td width="130">Localidade</td><td width="500">{{request.landRecord.location}}</td></tr>
-    <tr><td width="130">Ribeira</td><td width="500">{{request.landRecord.ribeira}}</td></tr>
-    <tr><td width="130">Área</td><td width="500" id="area">{{ request.landRecord.dimenssion }}m²</td></tr>
-    <tr><td width="130">Largura</td><td width="500" id="largura">{{request.landRecord.hectareArea}}m</td></tr>
-    <tr><td width="130">Comprimento</td><td width="500" id="comprimento">{{request.landRecord.hectareAreaToal}}m</td></tr>
-    <tr><td width="130">Confrontantes</td><td width="500">{{request.landRecord.limitants}}</td></tr>
+    <tr><td width="130">Localidade</td><td width="500">{{request.record_id.location}}</td></tr>
+    <tr><td width="130">Ribeira</td><td width="500">{{request.record_id.nearest_river}}</td></tr>
+    <tr><td width="130">Área</td><td width="500" id="area">{{ request.record_id.hectare_area }} hec</td></tr>
+<!--    <tr><td width="130">Largura</td><td width="500" id="largura">{{request.record_id.hectareArea}}m</td></tr>-->
+<!--    <tr><td width="130">Comprimento</td><td width="500" id="comprimento">{{request.record_id.hectareAreaToal}}m</td></tr>-->
+    <tr><td width="130">Confrontantes</td>
+        {% for records in request.record_id.limits.all %}
+            a <td width="500">{{records.location}}</td>
+        {%endfor%}
+    </tr>
     <tr><td width="130">Quantidade de Sesmeiros na carta</td><td width="500">{{request.owners.count}}</td></tr>
     <tr><td width="130">Solicitaram mesma medida</td><td width="500">{% if request.sameMeasure %} Sim {% else %} Não {% endif %}</td></tr>
     <tr><td width="130">Quantidade de Sesmeiros na carta</td><td width="500">{{request.owners.count}}</td></tr>
-    <tr><td width="130">Histórico</td><td width="500">{{request.landRecord.history.type}}</td></tr>
-    <tr><td width="130">Valor da Compra</td><td width="500">{{request.landRecord.history.comments}}</td></tr>
-    <tr><td width="130">Observações sobre a sesmaria</td><td width="500">{{request.landRecord.comments}}</td></tr>
+    <tr><td width="130">Histórico</td><td width="500">{{request.record_id.history.type}}</td></tr>
+    <tr><td width="130">Valor da Compra</td><td width="500">{{request.record_id.landHistory}}</td></tr>
+    <tr><td width="130">Observações sobre a sesmaria</td><td width="500">{{request.record_id.comments}}</td></tr>
 
 
 <!--        SESMEIRO        -->
-    <tr><td width="130" class="text-center font-weight-bold" colspan="2">Sesmeiros</td></tr>
+    <tr><td width="130" class="text-center font-weight-bold" colspan="2">Sesmeiros ({{request.owners.count}})</td></tr>
     {% for owner in request.owners.all %}
       <tr><td width="130" class="text-center font-weight-bold" colspan="2">Sesmeiro</td></tr>
          <tr><td width="130">Nome do sesmeiro</td><td width="500">{{owner.name}}</td></tr>
-         <tr><td width="130">Nome original</td><td width="500">{{owner.originalName}}</td></tr>
+         <tr><td width="130">Nome original</td><td width="500">{{owner.original_name}}</td></tr>
          <tr><td width="130">Estado Civil</td><td width="500">{{owner.matrialStatus}}</td></tr>
          <tr><td width="130">Indio</td><td width="500">{% if owner.indian %} Sim {% else %} Não {% endif %}</td></tr>
-         <tr><td width="130">Ordem religiosa</td><td width="500">{{owner.religiousOrder}}</td></tr>
-         <tr><td width="130">Capitania que reside</td><td width="500">{{owner.captancyResident}}({{owner.captancyResident.initials}})</td></tr>
+         <tr><td width="130">Ordem religiosa</td><td width="500">{{owner.religious_order}}</td></tr>
+         <tr><td width="130">Capitania que reside</td><td width="500">{{owner.captaincy_resident_name.name}} ({{owner.captaincy_resident_name.initials}})</td></tr>
          <tr><td width="130">Clero Secular</td><td width="500">{% if owner.secularClergy %} Sim {% else %} Não {% endif %}</td></tr>
          <tr><td width="130">Clero Regular</td><td width="500">{% if owner.regularClergy %} Sim {% else %} Não {% endif %}</td></tr>
          <tr><td width="130">Comentário</td><td width="500">{{owner.comments}}</td></tr>
-         <tr><td width="130">Observações privilegiadas</td><td width="500">{{owner.privilegiedComments}}</td></tr>
+         <tr><td width="130">Observações privilegiadas</td><td width="500">{{owner.privileged_observations}}</td></tr>
     {% endfor %}
 
 
 <!--        REQUERIMENTO        -->
     <td class="text-center font-weight-bold" colspan="2">Requerimento</td>
-    <tr><td width="130">Tipo de Requerimento</td><td width="500">{{request.type.name}}</td></tr>
+    <tr><td width="130">Tipo de Requerimento</td><td width="500">{{request.requestType}}</td></tr>
     <tr><td width="130">Comentários</td><td width="500">{{request.comments}}</td></tr>
-    <tr><td width="130">Observações privilegiadas</td><td width="500">{{request.privilegiedComments}}</td></tr>
+    <tr><td width="130">Observações privilegiadas</td><td width="500">{{request.privileged_observations}}</td></tr>
     {% if request.link == "NA" %}
     {% else %}
       <tr><td width="130">Links</td><td width="500">{{request.link}}</td></tr>
@@ -63,42 +67,41 @@
 <!--      JUSTIFICATIVAS        -->
     <td class="text-center font-weight-bold" colspan="2">Justificativas</td>
     <tr><td width="130">Justificativas</td><td width="500">
-      {% for justificativa in request.justificafion.all %}
+      {% for justificativa in request.justification.all %}
         {{justificativa.justification}};<br>
       {% endfor %}
     </td></tr>
-    <tr><td width="130">Comentários da Justificativas</td><td width="500">{{request.commentsJustification}}</td></tr>
+<!--    <tr><td width="130">Comentários da Justificativas</td><td width="500">{{request.commentsJustification}}</td></tr>-->
 
 <!--      EXIGÊNCIAS        -->
     <td class="text-center font-weight-bold" colspan="2">Exigências</td>
     <tr><td width="130">Exigências</td><td width="500">
-      {% for demand in request.demands.all %}
-        {{demand.demand}};<br>
-        {% if deman.comments %} <tr><td width="130">Observações sobre as exigências</td><td width="500">{{request.demands.comments}}</td></tr> {%endif%}
+      {% for dem in request.demands.all %}
+        {{dem.demands}};<br>
       {% endfor %}
     </td></tr>
-    <tr><td width="130">Comentários da Justificativas</td><td width="500">{{request.landRecord.commentsDemands}}</td></tr>
+<!--    <tr><td width="130">Comentários da Justificativas</td><td width="500">{{request.record_id.commentsDemands}}</td></tr>-->
 
 <!--      DEFERIMENTOS      -->
-    <td class="text-center font-weight-bold" colspan="2">Deferimentos</td>
-    <tr><td width="130">Foi deferido</td><td width="500">{% if request.deferment.defered %} Sim {% else %} Não {% endif %}</td></tr>
-    <tr><td width="130">Forma</td><td width="500">{{request.deferment.DefermentForm.form}}</td></tr>
 
-     <td class="text-center font-weight-bold" colspan="2">Deferimento (Registro)</td>
-    <tr><td width="130">Data de registro</td><td width="500">{{request.deferment.DefermentRegister.date}}</td></tr>
-    <tr><td width="130">Local do Registro registro</td><td width="500">{{request.deferment.DefermentRegister.local}}</td></tr>
-    <tr><td width="130">Livro registro</td><td width="500">{{request.deferment.DefermentRegister.book}}</td></tr>
-    <tr><td width="130">Escrivão Responsável</td><td width="500">{{request.deferment.DefermentRegister.scriviner}}</td></tr>
+
+<!--    <tr><td width="130">Forma</td><td width="500">{{request.deferment.DefermentForm.form}}</td></tr>-->
+
+     <td class="text-center font-weight-bold" colspan="2">Deferimento</td>
+    <tr><td width="130">Foi deferido</td><td width="500">{% if request.deferment.defered %} Sim {% else %} Não {% endif %}</td></tr>
+<!--    <tr><td width="130">Data de registro</td><td width="500">{{request.deferment.DefermentRegister.date}}</td></tr>-->
+    <tr><td width="130">Local do Registro</td><td width="500">{{request.deferment.sources}}</td></tr>
+    <tr><td width="130">Escrivão Responsável</td><td width="500">{{request.deferment.scriviner}}</td></tr>
 
       <td class="text-center font-weight-bold" colspan="2">Deferimentos (Autoridade)</td>
-    <tr><td width="130">Autoridade</td><td width="500">{{request.deferment.DefermentAuthority.name}}</td></tr>
-    <tr><td width="130">Título</td><td width="500">{{request.deferment.DefermentAuthority.title}}</td></tr>
+    <tr><td width="130">Autoridade</td><td width="500">{{request.deferment.authority.name}}</td></tr>
+    <tr><td width="130">Título</td><td width="500">{{request.deferment.authority.title}}</td></tr>
 
     <tr><td width="130" class="text-center font-weight-bold" colspan="2">Deferimentos (Tramitações)</td></tr>
-      <tr><td width="130">Provedor</td><td width="500">{{request.deferment.defermentTramitations.nameProvider}}</td></tr>
-      <tr><td width="130">Procurador</td><td width="500">{{request.deferment.defermentTramitations.nameAttorney}}</td></tr>
-      <tr><td width="130">Camarario</td><td width="500">{{request.deferment.defermentTramitations.nameAssembly}}</td></tr>
-      <tr><td width="130">Escrivão</td><td width="500">{{request.deferment.defermentTramitations.nameScriviner}}</td></tr>
+      <tr><td width="130">Provedor</td><td width="500">{{request.deferment.tramitations.ProviderName}}</td></tr>
+      <tr><td width="130">Procurador</td><td width="500">{{request.deferment.tramitations.attorneyName}}</td></tr>
+      <tr><td width="130">Camarario</td><td width="500">{{request.deferment.tramitations.assemblyName}}</td></tr>
+      <tr><td width="130">Escrivão</td><td width="500">{{request.deferment.tramitations.scrivinerName}}</td></tr>
 
 
     <tr><td width="130" class="text-center font-weight-bold" colspan="2">Confirmações</td></tr>
@@ -107,20 +110,14 @@
     <tr><td width="130">Concessão igualitária</td><td width="500">{% if request.confirmation.concessionEqual %} Sim {% else %} Não {% endif %}</td></tr>
     <tr><td width="130">Carta de confirmação presencial</td><td width="500">{% if request.confirmation.confirmationCardPresential %} Sim {% else %} Não {% endif %}</td></tr>
     <tr><td width="130">Carta de confirmação de registro</td><td width="500">{% if request.confirmation.confirmationCardRegistred %} Sim {% else %} Não {% endif %}</td></tr>
-    <tr><td width="130">Data de confirmação</td><td width="500">{{request.confirmation.dateRequest}}</td></tr>
+    <tr><td width="130">Data de confirmação</td><td width="500">{{request.confirmation.dateConfirmation}}</td></tr>
     <tr><td width="130">Nome do Rei</td><td width="500">{{request.confirmation.kingName}}</td></tr>
-    <tr><td width="130">Nome do escrivão</td><td width="500">{{request.confirmation.scrivinerName}}</td></tr>
+    <tr><td width="130">Nome do escrivão</td><td width="500">{{request.confirmation.scrivener}}</td></tr>
     <tr><td width="130">Nome do tesoureiro</td><td width="500">{{request.confirmation.treasurerName}}</td></tr>
     <tr><td width="130">Registro geral de merces</td><td width="500">{% if request.confirmation.generalRegisterMerces %} Sim {% else %} Não {% endif %}</td></tr>
-    <tr><td width="130">Meias anatas</td><td width="500">{% if request.confirmation.halfValueAnatas %} Sim {% else %} Não {% endif %}</td></tr>
+    <tr><td width="130">Meias anatas</td><td width="500">{% if request.confirmation.registerMeiasAnatas %} Sim {% else %} Não {% endif %}</td></tr>
     <tr><td width="130">Outros valores</td><td width="500">{{request.confirmation.otherValue}}</td></tr>
     <tr><td width="130">Comentários</td><td width="500">{{request.confirmation.comments}}</td></tr>
-    <tr><td width="130">Tipo de confirmação</td><td width="500">
-      {% for type in request.confirmation.type.all %}
-        {{type.type}}
-      {% endfor %}
-
-    </td></tr>
   </table>
 </div>
 

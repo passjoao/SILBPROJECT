@@ -51,15 +51,6 @@
           <li class="nav-item">
             <a class="nav-link" href="contact.html">Contato</a>
           </li>
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Sair</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Entrar</a>
-          </li>
-          {% endif %}
         </ul>
       </div>
     </div>

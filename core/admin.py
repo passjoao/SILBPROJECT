@@ -3,9 +3,11 @@ from django.contrib import admin
 from core.models import (Owner, ReligiousOrder, Captaincy, LandRecord,
                          Request, Justification, Demands, Authority,
                          Confirmation, Deferment, Demands, LandHistory,
-                         ReligiousOrder, Titles, Tramitations)
+                         ReligiousOrder, Titles, Tramitations, Image, Files)
 
 admin.site.register(Tramitations)
+admin.site.register(Image)
+admin.site.register(Files)
 admin.site.register(Authority)
 admin.site.register(Confirmation)
 admin.site.register(Deferment)
