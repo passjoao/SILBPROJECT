@@ -28,6 +28,7 @@
             </tr>
         </thead>
         <tbody>
+
         {% for object in object_list %}
         <tr class="trHover" onclick="window.location='{{ object.get_absolute_url }}';">
             <td>{{object.record_id.reference}}</td>
