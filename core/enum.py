@@ -11,25 +11,37 @@ class ChoiceEnum(Enum):
 
 
 class Gender(ChoiceEnum):
-    MALE = 'MALE'
-    FEMALE = 'FEMALE'
+    MALE = 'Homem'
+    FEMALE = 'Mulher'
     NA = 'NA'
 
 
+class MatrialStatus(ChoiceEnum):
+    CASADO = 'Casado'
+    SOLTEIRO = 'Solteiro'
+    DIVORCIADO = 'Divorciado'
+    VIUVO = 'Viúvo'
+
+
 class LandRecordType(ChoiceEnum):
-    FARM = 'FARM'
-    MINING = 'MINING'
+    FARM = 'Fazenda'
+    MINING = 'Mineração'
+
 
 class LandHistory(ChoiceEnum):
-    SOLD = 'Vendida'
+    SOLD = 'Comprada'
     PRIMORDIAL = 'Primordial'
-    VACANT = 'Devoluta'
-    AFORADA = 'Aforada' ##procurar tradução melhor para aforada 
+    HERDED = 'Herdada'
+    VACANT = 'Devoluta nunca povoada'
+    ABANDONED = 'Devoluta por abandono'
+    RENTED = 'Aforada'  ##procurar tradução melhor para aforada
+
 
 class RequestType(ChoiceEnum):
     CONCESSION = 'Concessão'
     REQUEST = 'Requisição'
     CONFIRMATION = 'Confirmação'
+
 
 class Titles(ChoiceEnum):
     CAPITAOMOR = 'CAPITAO-MOR'
@@ -41,4 +53,3 @@ class Titles(ChoiceEnum):
     TRIUNVIRATO = 'TRIUNVIRATO'
     PRESIDENTEPROVINCIAL = 'PRESIDENTE PROVINCIAL'
     CAPITAOLOCOTENENTE = 'CAPITAO LOCO TENENTE'
-    
