@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Request, Owner
+from django.http import HttpResponse
+import json
+
+from django.views.decorators.csrf import csrf_exempt
+
+from .models import Request, Owner, LandRecord
 
 def index(request):
     """View function for home page of site."""
@@ -23,10 +28,12 @@ from .forms import RequestSearchForm
 from search_views.search import SearchListView
 from search_views.filters import BaseFilter
 
+
 class RequestFilter(BaseFilter):
     search_fields = {
-        'search_text' : ['comments', 'privileged_observations']
+        'search_text': ['comments', 'privileged_observations', 'record_id__location']
     }
+
 
 class RequestListViews(SearchListView):
     model = Request
@@ -35,5 +42,30 @@ class RequestListViews(SearchListView):
     form_class = RequestSearchForm
     filter_class = RequestFilter
 
+
 class RequestDetailView(generic.DetailView):
     model = Request
+
+@csrf_exempt
+def loaddados(request):
+    a = []
+    if request.method == "GET":
+        body_unicode = eval(request.body.decode('utf-8'))
+        pesquisa = body_unicode['pesquisa']
+        landrecord = LandRecord.objects.filter(reference__contains=pesquisa, location__icontains=pesquisa)
+        owner = Owner.objects.filter(name__contains=pesquisa, original_name__icontains=pesquisa)
+        request = Request.objects.filter(requestType__icontains=pesquisa)
+        f = max([landrecord.count(), owner.count(),request.count()],key=int)
+    return HttpResponse(json.dumps(a), content_type='application/json',status=201)
+
+#     dados = []
+#     if (request.method == "POST"):
+#         body_unicode = eval(request.body.decode('utf-8'))
+#         #referencia landrecord - reference
+#         re = LandRecord.objects.filter(reference = )
+#     #referencia landrecord - reference
+#     #localização landrecord - location
+#     #Data da Requisição request - dateRequest
+#     #Data da concessão confirmation - dateConfirmation
+#     #Sesmeiros owner - name, original_name
+    #     #Tipo de carta request - requestType
