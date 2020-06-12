@@ -60,6 +60,8 @@ class LandRecord(models.Model):
     location = models.TextField(verbose_name="Localidade")
     nearest_river = models.CharField(max_length=128, null=False, verbose_name="Ribeira")
     hectare_area = models.FloatField(verbose_name="área em hectares")
+    #comprimento
+    #largura
     published = models.BooleanField(default=False, verbose_name="Publicado")
     landHistory = models.CharField(max_length=128, choices=LandHistory.choices(), null=True, verbose_name="Histórico da terra")
     land_record_type = models.CharField(

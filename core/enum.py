@@ -29,10 +29,12 @@ class LandRecordType(ChoiceEnum):
 
 
 class LandHistory(ChoiceEnum):
-    SOLD = 'Vendida'
+    SOLD = 'Comprada'
     PRIMORDIAL = 'Primordial'
-    VACANT = 'Devoluta'
-    AFORADA = 'Aforada'  ##procurar tradução melhor para aforada
+    HERDED = 'Herdada'
+    VACANT = 'Devoluta nunca povoada'
+    ABANDONED = 'Devoluta por abandono'
+    RENTED = 'Aforada'  ##procurar tradução melhor para aforada
 
 
 class RequestType(ChoiceEnum):
