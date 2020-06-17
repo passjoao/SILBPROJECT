@@ -191,7 +191,7 @@ class Deferment(models.Model):#classe pada parte de deferimento da carta e trami
     dateRegister = models.DateField(default=datetime.date.today)
     comments = models.TextField()
     privileged_observations = models.TextField()
-    sources = models.TextField()#referencia do documento físico
+    sources = models.TextField(verbose_name="Referência")#referencia do documento físico
     authority = models.ForeignKey(
         Authority, on_delete=models.SET_NULL, related_name='authority', null = True
     )
@@ -210,11 +210,11 @@ class Deferment(models.Model):#classe pada parte de deferimento da carta e trami
 
 
 class Tramitations(models.Model):
-    pendingProvider = models.BooleanField(default=False, verbose_name="Passou por provedor")
-    ProviderName = models.CharField(max_length=128, verbose_name="Nome provedor")
+    pendingProvider = models.BooleanField(default=False, verbose_name="Passou por provedor/Procurador")
+    ProviderName = models.CharField(max_length=128, verbose_name="Nome provedor/Procurador")
 
-    pendingAttorney = models.BooleanField(default=False, verbose_name="Passou por procurador")
-    attorneyName = models.CharField(max_length=128, verbose_name="Nome procurador")
+    # pendingAttorney = models.BooleanField(default=False, verbose_name="Passou por procurador")
+    # attorneyName = models.CharField(max_length=128, verbose_name="Nome procurador")
     
     pendingAssembly = models.BooleanField(default=False, verbose_name="Passou pela câmara ")
     assemblyName = models.CharField(max_length=128, verbose_name="Nome camarário")
