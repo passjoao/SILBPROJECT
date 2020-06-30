@@ -1,9 +1,6 @@
 from django.contrib import admin
 
-from core.models import (Owner, ReligiousOrder, Captaincy, LandRecord,
-                         Request, Justification, Demands, Authority,
-                         Confirmation, Deferment, Demands, LandHistory,
-                         ReligiousOrder, Titles, Tramitations, Image, Files)
+from core.models import *
 
 admin.site.register(Tramitations)
 admin.site.register(Image)
