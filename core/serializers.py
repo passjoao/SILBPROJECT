@@ -11,7 +11,7 @@ class AuthoritySerializer(serializers.ModelSerializer):
 class CaptaincySerializer(serializers.ModelSerializer):
     class Meta:
         model = Captaincy
-        fields = '__all__'
+        fields = ['name', 'initials']
 
 
 class ConfirmationSerializer(serializers.ModelSerializer):

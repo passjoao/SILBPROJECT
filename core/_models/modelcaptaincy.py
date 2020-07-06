@@ -6,4 +6,4 @@ class Captaincy(models.Model):
     initials = models.CharField(max_length=3)
 
     def __str__(self):
-        return self.name
+        return '%s' %(self.name)

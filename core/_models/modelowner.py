@@ -30,9 +30,6 @@ class Owner(models.Model):
     def __str__(self):
         return '%s' %(self.name)
 
-    class meta:
-        ordering = ['name']
-
 
     def get_absolute_url(self):
         """Retorna a url para acessar uma instancia específica de MyModelName."""

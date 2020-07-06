@@ -8,4 +8,4 @@ class Authority(models.Model):
     title = models.CharField(max_length=128, choices=Titles.choices())
 
     def __str__(self):
-        return self.name
+        return '%s' %(self.name)
