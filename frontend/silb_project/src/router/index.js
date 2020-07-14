@@ -2,18 +2,18 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CadastroUsuario from '../modles/cadastro/CadastroUsuario.vue'
-import Dashboard from "../views/Dashboard";
-
+import Dashboard from "../modles/admin/Dashboard";
+import Banco from "../views/Banco";
 Vue.use(VueRouter)
 
   const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home
   },
   {
-    path: '/',
+    path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard
   },
@@ -21,6 +21,11 @@ Vue.use(VueRouter)
     path: '/cadastro',
     name: 'CadastroUsuario',
     component: CadastroUsuario
+  },
+  {
+    path: '/banco',
+    name: 'Banco',
+    component: Banco
   },
   {
     path: '/about',
