@@ -15,14 +15,19 @@
                 Banco
               </span>
             </a>
-            <a href="" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
+            <a href="/banco" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
               <span>
-                Sobre
+                Equipe
               </span>
             </a>
             <a href="" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
               <span>
                 Contato
+              </span>
+            </a>
+            <a href="" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
+              <span>
+                Legislação
               </span>
             </a>
           </div>
