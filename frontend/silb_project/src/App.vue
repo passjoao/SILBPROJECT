@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <nav class="flex items-center bg-gray-600 p-3 flex-wrap">
-        <a href="" class="p-2 mr-4 inline-flex items-center">
+      <nav class="flex items-center bg-white navbar p-3 flex-wrap">
+        <a href="/" class="p-2 mr-4 inline-flex items-center">
           SILB
         </a>
         <button class="text-white flex-initial p-3 hover:bg-gray-900 rounded lg:hidden">
@@ -10,22 +10,22 @@
         </button>
         <div class="top-nav w-full lg:inline-flex lg:flex-grow lg:w-auto" id="navigation">
           <div class="lg:inline-flex lg:flex-row lg:ml-auto">
-            <a href="" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
+            <a href="/banco" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
               <span>
                 Banco
               </span>
             </a>
-            <a href="/banco" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
+            <a href="/equipe" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
               <span>
                 Equipe
               </span>
             </a>
-            <a href="" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
+            <a href="/contact" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
               <span>
                 Contato
               </span>
             </a>
-            <a href="" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
+            <a href="/legislacao" class="lg:inline-flex lg:w-auto px-3 py-2 rounded text-gray-400">
               <span>
                 Legislação
               </span>
@@ -34,7 +34,9 @@
         </div>
       </nav>
     </div>
-    <router-view/>
+    <div class="bg-gray-200">
+        <router-view/>
+    </div>
   </div>
 </template>
 
@@ -46,6 +48,10 @@
   //text-align: center;
   color: #2c3e50;
 }
+.nav{
+    background-color:#fff;
+}
+
 
 #nav {
   a {

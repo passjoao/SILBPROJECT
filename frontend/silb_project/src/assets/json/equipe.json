@@ -1,0 +1,36 @@
+{
+  "coordenacao": [
+    {
+      "nome":"Carmen Margarida Oliveira Alveal",
+      "tilulacao": "Professora do Departamento de História da UFRN"
+    },
+    {
+      "nome":"Thiago Alves Dias",
+      "tilulacao": "Professor do Departamento de História da UPE"
+    },
+    {
+      "nome":"Leornado Cândido Rolim",
+      "tilulacao": "Professor do Departamento de História da UERN"
+    }
+  ],
+  "colaboracao": [
+    {
+      "nome": "Márcia Maria Menendes Motta",
+      "tilulacao": "Professora do Departamento de História da UFF"
+    },
+    {
+      "nome": "Rafael Ivan Chambouleyron",
+      "tilulacao": "Professor Associado do Departamento de História da UFPA – Belém, Brasil."
+    }
+  ],
+  "desenvolvimento": [
+    {
+      "nome": "José Amaro Silva dos Santos",
+      "tilulacao": "Desenvolvedor de Softwares Sênior"
+    },
+    {
+      "nome": "João Victor Soares OLiveira",
+      "tilulacao": "Discente do Bacharel em Tecnologia da Informação UFRN "
+    }
+  ]
+}
