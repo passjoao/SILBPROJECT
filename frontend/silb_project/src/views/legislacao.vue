@@ -1,13 +1,19 @@
 
 <template>
-    <div class="corpo">
+    <div class="corpo" id="butao1">
         <div class="text-justify cabecalho">{{textos.header}}</div>
-        <div v-for="texto in textos.paragrafos" :key="texto" class="text-justify">
-            <h1 class="cabecalho">{{texto.titulo}}</h1>
-            <p class="texto">{{texto.conteudo}}</p>
-        </div>
+         <b-button v-b-toggle.collapse-1 variant="secondary">Expandir</b-button>
+        <b-collapse id="collapse-1" class="mt-2">
+                <b-card class="card-text">
+                    <div v-for="texto in textos.paragrafos" :key="texto" class="text-justify">
+                        <h1 class="cabecalho">{{texto.titulo}}</h1>
+                        <p class="texto">{{texto.conteudo}}</p>
+                    </div>
+            </b-card>
+        </b-collapse>
     </div>
 </template>
+
 
 <script>
 import textos from "../assets/json/legislacao.json";
@@ -19,7 +25,7 @@ data() {
         textos: textos
     }
  }
-}
+};
 </script>
 
 <style scoped>

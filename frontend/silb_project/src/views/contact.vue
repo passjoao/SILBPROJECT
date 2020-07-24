@@ -1,6 +1,6 @@
 <template>
-<div>
-    <b-container fluid class="content row text-center">
+<div class="h-screen">
+    <b-container fluid class="content row text-center h-screen mt-1">
        <div class="telefone col-md-4">
        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
         width="96" height="96"
@@ -48,11 +48,5 @@ name: "Contact"
 
 svg{
     margin:0 auto;
-}
-
-.header-cover {
-    background-image: url(../assets/imagens/logolehs.png);
-    background-size: inherit;
-    background-repeat: no-repeat;
 }
 </style>

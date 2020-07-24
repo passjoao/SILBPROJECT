@@ -43,15 +43,7 @@
     </tbody>
   </table>
 
-  <div class="bg-purple-300">
-    <h1>teste
-    <span>
-      <a href="">
-        +
-      </a>
-    </span>
-    </h1>
-  </div>
+  
 </div>
 </template>
 
