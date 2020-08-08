@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <nav class="flex items-center bg-white navbar p-3 flex-wrap">
+      <nav class="flex items-center bg-white-500 navbar p-3 flex-wrap shadow">
         <a href="/" class="p-2 mr-4 inline-flex items-center">
           SILB
         </a>
@@ -62,5 +62,32 @@
       color: #42b983;
     }
   }
+}
+body{
+  background-color: theme('colors.gray.200');
+}
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 2px;
+  background-color: #F5F5F5;
+  height: 10px;
+  cursor: grab;
+}
+
+::-webkit-scrollbar
+{
+  width: 2px;
+  background-color: #F5F5F5;
+  height: 10px;
+  cursor: grab;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: theme('colors.gray.500');
+  cursor: grab;
 }
 </style>

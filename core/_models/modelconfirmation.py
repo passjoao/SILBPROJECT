@@ -3,7 +3,8 @@ from django.urls import reverse
 
 
 class Confirmation(models.Model): #Classe que define se a carta foi confirmada
-    dateConfirmation = models.DateField()
+    dateConfirmation = models.DateField(verbose_name="Data de Confirmação")
+    dateConcession = models.DateField(verbose_name="Data de concessão")
     confirmationLisbon = models.BooleanField(default=True) #se a carta foi confirmada em Lisboa
     concessionPresential = models.BooleanField(default=True) #se a concessão foi presencial
     concessionEqual = models.BooleanField(default=True) #caso tenha mais de um sesmeiro para a terra, a divissão dela foi de forma igualitária

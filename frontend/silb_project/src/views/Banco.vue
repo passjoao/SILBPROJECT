@@ -1,49 +1,67 @@
 <template>
-<div>
-  <table class="table-auto">
-    <thead>
-    <tr>
-      <th class="px-4 py-2">Referência</th>
-      <th class="px-4 py-2">Sesmeiro</th>
-      <th class="px-4 py-2">Data Requerimento</th>
-      <th class="px-4 py-2">Data de Concessão</th>
-      <th class="px-4 py-2">Localidade</th>
-      <th class="px-4 py-2">Área(léguas)</th>
-      <th class="px-4 py-2">Data de Confirmação</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td class="border px-4 py-2">Intro to CSS</td>
-      <td class="border px-4 py-2">Adam</td>
-      <td class="border px-4 py-2">858</td>
-      <td class="border px-4 py-2">858</td>
-      <td class="border px-4 py-2">858</td>
-      <td class="border px-4 py-2">858</td>
-      <td class="border px-4 py-2">858</td>
-    </tr>
-    <tr class="bg-gray-100">
-      <td class="border px-4 py-2">A Long and Winding Tour of the History of UI Frameworks and Tools and the Impact on Design</td>
-      <td class="border px-4 py-2">Adam</td>
-      <td class="border px-4 py-2">112</td>
-      <td class="border px-4 py-2">112</td>
-      <td class="border px-4 py-2">112</td>
-      <td class="border px-4 py-2">112</td>
-      <td class="border px-4 py-2">112</td>
-    </tr>
-    <tr>
-      <td class="border px-4 py-2">Intro to JavaScript</td>
-      <td class="border px-4 py-2">Chris</td>
-      <td class="border px-4 py-2">1,280</td>
-      <td class="border px-4 py-2">1,280</td>
-      <td class="border px-4 py-2">1,280</td>
-      <td class="border px-4 py-2">1,280</td>
-      <td class="border px-4 py-2">1,280</td>
-    </tr>
-    </tbody>
-  </table>
+<div class="content">
+  <b-card no-body>
+    <b-tabs card>
+      <b-tab title="Dados Gerais">
+        <div class="tabela white-100">
+        <table class="table-auto">
+          <thead>
+          <tr>
+            <th class="px-4 py-2">Referência</th>
+            <th class="px-4 py-2">Sesmeiros</th>
+            <th class="px-4 py-2">Data Requerimento</th>
+            <th class="px-4 py-2">Data de Concessão</th>
+            <th class="px-4 py-2">Localidade</th>
+            <th class="px-4 py-2">Área (léguas)</th>
+            <th class="px-4 py-2">Data de Confirmação</th>
+            <th class="px-4 py-2">Histórico da Terra</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="border px-4 py-2">RN 0000</td>
+            <td class="border px-4 py-2">Sesmeiro Teste;</td>
+            <td class="border px-4 py-2">05/01/1650</td>
+            <td class="border px-4 py-2">05/01/1650</td>
+            <td class="border px-4 py-2">Canguaretama</td>
+            <td class="border px-4 py-2">10 léguas²</td>
+            <td class="border px-4 py-2">05/01/1650</td>
+            <td class="border px-4 py-2">Primordial</td>
+          </tr>
+          <tr>
+            <td class="border px-4 py-2">RN 0000</td>
+            <td class="border px-4 py-2">Sesmeiro Teste;</td>
+            <td class="border px-4 py-2">05/01/1650</td>
+            <td class="border px-4 py-2">05/01/1650</td>
+            <td class="border px-4 py-2">Canguaretama</td>
+            <td class="border px-4 py-2">10 léguas²</td>
+            <td class="border px-4 py-2">05/01/1650</td>
+            <td class="border px-4 py-2">Primordial</td>
+          </tr>
+          <tr>
+            <td class="border px-4 py-2">RN 0000</td>
+            <td class="border px-4 py-2">Sesmeiro Teste;</td>
+            <td class="border px-4 py-2">05/01/1650</td>
+            <td class="border px-4 py-2">05/01/1650</td>
+            <td class="border px-4 py-2">Canguaretama</td>
+            <td class="border px-4 py-2">10 léguas²</td>
+            <td class="border px-4 py-2">05/01/1650</td>
+            <td class="border px-4 py-2">Primordial</td>
+          </tr>
+          </tbody>
+        </table>  
+      </div>
+      </b-tab>
 
-  
+      <b-tab title="Sesmeiros">
+          <!-- colocar nova tabela aqui -->
+      </b-tab>
+
+      <b-tab title="Gráficos">
+        <!-- colocar nova tabela aqui -->
+      </b-tab>
+    </b-tabs>
+  </b-card>
 </div>
 </template>
 
@@ -66,5 +84,30 @@ name: "Banco",
 </script>
 
 <style scoped>
+.tabela{
+  overflow-x: scroll;
+  word-wrap: all;
+}
+.table-auto{
+  border-collapse: collapse;
+}
+.table-auto, td, th, tr{
+  border: 0.5px solid #d3d3d3;
+  white-space: nowrap;
+}
+thead{
+  background-color: theme('colors.blue.100');
+}
 
+.content{
+  margin: 10px auto;
+  width: 1200px;
+}
+.card{
+  background-color: theme('colors.white');
+}
+.tabela::-webkit-scrollbar
+{
+  height: 7px;
+}
 </style>

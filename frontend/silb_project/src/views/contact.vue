@@ -1,5 +1,5 @@
 <template>
-<div class="h-screen">
+<div class="h-screen mt-10">
     <b-container fluid class="content row text-center h-screen mt-1">
        <div class="telefone col-md-4">
        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"

@@ -110,7 +110,7 @@ i = 1
 if(i == 1):
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'silb_production',
             'USER': 'postgres',
             'PASSWORD': 'postgres',
