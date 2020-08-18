@@ -6,7 +6,7 @@ class Tramitations(models.Model):
     pendingProvider = models.BooleanField(default=False, verbose_name="Passou por provedor/Procurador")
     ProviderName = models.CharField(max_length=128, verbose_name="Nome provedor/Procurador")
 
-    pendingAssembly = models.BooleanField(default=False, verbose_name="Passou pela câmara ")
+    pendingAssembly = models.BooleanField(default=False, verbose_name="Passou pela câmara")
     assemblyName = models.CharField(max_length=128, verbose_name="Nome camarário")
 
     pendingScriviner = models.BooleanField(default=False, verbose_name="Passou por escrivão")

@@ -15,7 +15,7 @@ from core.enum import RequestType
 
 class Request(models.Model):
     dateRequest = models.DateField()
-    same_measure = models.BooleanField(default=False)
+    same_measure = models.BooleanField(default=False, verbose_name="Mesma medida")
     requestType = models.CharField(
         max_length=128, choices=RequestType.choices(), verbose_name='Tipo de requisição'
     )

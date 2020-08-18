@@ -3,7 +3,10 @@
   <b-card no-body>
     <b-tabs card>
       <b-tab title="Dados Gerais">
+        <label form="pesquisar">Pesquisar </label>
+        <input type="text" name="pesquisar" id="pesquisar" placeholder="">
         <div class="tabela white-100">
+        
         <table class="table-auto">
           <thead>
           <tr>
@@ -18,35 +21,8 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td class="border px-4 py-2">RN 0000</td>
-            <td class="border px-4 py-2">Sesmeiro Teste;</td>
-            <td class="border px-4 py-2">05/01/1650</td>
-            <td class="border px-4 py-2">05/01/1650</td>
-            <td class="border px-4 py-2">Canguaretama</td>
-            <td class="border px-4 py-2">10 léguas²</td>
-            <td class="border px-4 py-2">05/01/1650</td>
-            <td class="border px-4 py-2">Primordial</td>
-          </tr>
-          <tr>
-            <td class="border px-4 py-2">RN 0000</td>
-            <td class="border px-4 py-2">Sesmeiro Teste;</td>
-            <td class="border px-4 py-2">05/01/1650</td>
-            <td class="border px-4 py-2">05/01/1650</td>
-            <td class="border px-4 py-2">Canguaretama</td>
-            <td class="border px-4 py-2">10 léguas²</td>
-            <td class="border px-4 py-2">05/01/1650</td>
-            <td class="border px-4 py-2">Primordial</td>
-          </tr>
-          <tr>
-            <td class="border px-4 py-2">RN 0000</td>
-            <td class="border px-4 py-2">Sesmeiro Teste;</td>
-            <td class="border px-4 py-2">05/01/1650</td>
-            <td class="border px-4 py-2">05/01/1650</td>
-            <td class="border px-4 py-2">Canguaretama</td>
-            <td class="border px-4 py-2">10 léguas²</td>
-            <td class="border px-4 py-2">05/01/1650</td>
-            <td class="border px-4 py-2">Primordial</td>
+          <tr v-for="(value,key) in itens" :key="key" >
+            <td class="border px-4 py-2">{{item.record_id}}</td>
           </tr>
           </tbody>
         </table>  
@@ -66,18 +42,29 @@
 </template>
 
 <script>
+import urlBase from "../main";
+const axios = require('axios');
+
 export default {
 name: "Banco",
   data() {
     return{
-    itens:[{}],
+    itens:[],
   }
 
 
   },
+  mounted() {
+    console.log(urlBase)
+    axios.get(urlBase+'request/').then(res=>{
+      this.itens=res.data
+      console.log(this.itens)
+      }).catch(erro=>{
+      console.log(erro)
+    })
+  },
   methods:{
-
-
+    
   }
 
 }

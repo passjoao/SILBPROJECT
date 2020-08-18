@@ -27,6 +27,11 @@ Vue.use(VueRouter)
     name: 'Banco',
     component: Banco
   },
+  {
+    path: '/sesmarias',
+    name: 'Sesmarias',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Sesmarias.vue')
+  },
     {
     path: '/contact',
     name: 'Contact',

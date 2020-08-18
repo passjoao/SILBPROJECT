@@ -12,7 +12,7 @@ class Deferment(models.Model):#classe pada parte de deferimento da carta e trami
     dateRegister = models.DateField(default=datetime.date.today)
     comments = models.TextField()
     privileged_observations = models.TextField()
-    sources = models.TextField(verbose_name="Referência")#referencia do documento físico
+    sources = models.TextField(verbose_name="Fonte")#referencia do documento físico
     authority = models.ForeignKey(
         Authority, on_delete=models.SET_NULL, related_name='authority', null = True
     )
