@@ -21,8 +21,17 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="(value,key) in itens" :key="key" >
-            <td class="border px-4 py-2">{{item.record_id}}</td>
+          <tr v-for="(iten) in itens" v-bind:key="iten.id">
+            <td>{{ iten.record_id}}</td> <!-- add referencia -->
+            <td>{{ iten.owners}}</td>
+            <td>{{ iten.dateRequest }}</td>
+            <td>{{ iten.confirmation }}</td> <!-- add data concessão -->
+            <td>{{ iten.record_id }}</td> <!-- add localidade -->
+            <td>{{ iten.record_id }}</td> <!-- add área -->
+            <td>{{ iten.confirmation }}</td> <!-- add data de confirmação -->
+            <td>{{ iten.record_id }}</td> <!-- add histórico da terra -->
+
+
           </tr>
           </tbody>
         </table>  
@@ -47,21 +56,18 @@ const axios = require('axios');
 
 export default {
 name: "Banco",
-  data() {
-    return{
-    itens:[],
-  }
-
-
+  data () {
+    return {
+      itens: null
+    }
   },
   mounted() {
     console.log(urlBase)
-    axios.get(urlBase+'request/').then(res=>{
-      this.itens=res.data
-      console.log(this.itens)
-      }).catch(erro=>{
+    axios.get(urlBase+'request/')
+    .then(res=>(this.itens=res.data))
+    .catch(erro=>{
       console.log(erro)
-    })
+      })
   },
   methods:{
     
