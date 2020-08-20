@@ -16,7 +16,7 @@
             <th class="px-4 py-2">Data de Concessão</th>
             <th class="px-4 py-2">Localidade</th>
             <th class="px-4 py-2">Área (léguas)</th>
-            <th class="px-4 py-2">Data de Confirmação</th>
+            <th class="px-4 py-2">Data de Confirmação Régia</th>
             <th class="px-4 py-2">Histórico da Terra</th>
           </tr>
           </thead>
