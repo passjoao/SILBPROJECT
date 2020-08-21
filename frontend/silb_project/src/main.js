@@ -5,6 +5,15 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import './assets/css/tailwind.css'
 import axios from 'axios'
 import vueaxios from 'vue-axios'
+import moment from 'moment'
+  
+Vue.config.productionTip = false
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD/MM/YYYY')
+  }
+});
+
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)

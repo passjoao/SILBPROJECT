@@ -174,3 +174,6 @@ LOGIN_REDIRECT_URL = '/admin/'
 LOGIN_URL = '/conta/login/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+DATE_INPUT_FORMATS = ['%d-%m-%Y']
