@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import CadastroUsuario from '../modles/cadastro/CadastroUsuario.vue'
 import Dashboard from "../modles/admin/Dashboard";
 import Banco from "../views/Banco";
+import Login from '../views/Login';
 Vue.use(VueRouter)
 
   const routes = [
@@ -21,6 +22,11 @@ Vue.use(VueRouter)
     path: '/cadastro',
     name: 'CadastroUsuario',
     component: CadastroUsuario
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   },
   {
     path: '/banco',
