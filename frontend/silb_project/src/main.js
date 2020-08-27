@@ -29,18 +29,18 @@ const urlBase = 'http://localhost:8000/api/v1/'
 export default urlBase
 Vue.use(axios, vueaxios)
 
-var firebaseConfig = {
-    apiKey: "AIzaSyC8d7qyPFi_2otiTaZTEAyjv08qJpUJDxw",
-    authDomain: "silbproject.firebaseapp.com",
-    databaseURL: "https://silbproject.firebaseio.com",
-    projectId: "silbproject",
-    storageBucket: "silbproject.appspot.com",
-    messagingSenderId: "557455423181",
-    appId: "1:557455423181:web:d4ad037b45d096693c5b84",
-    measurementId: "G-Y6TSCYPSJN"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyC8d7qyPFi_2otiTaZTEAyjv08qJpUJDxw",
+  authDomain: "silbproject.firebaseapp.com",
+  databaseURL: "https://silbproject.firebaseio.com",
+  projectId: "silbproject",
+  storageBucket: "silbproject.appspot.com",
+  messagingSenderId: "557455423181",
+  appId: "1:557455423181:web:d4ad037b45d096693c5b84",
+  measurementId: "G-Y6TSCYPSJN"
+};
+  // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
 
 new Vue({
   router,

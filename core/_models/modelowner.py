@@ -11,6 +11,7 @@ class Owner(models.Model):
     original_name = models.CharField(max_length=128)
     spouse_name = models.CharField(max_length=128)
     gender = models.CharField(max_length=128, choices=Gender.choices())
+    occupation = models.CharField(max_length=128, verbose_name="Ocupação", default="NA") 
     indian = models.BooleanField(default=False)
     captaincy_resident = models.BooleanField(default=True, verbose_name="Reside em capitania")
     captaincy_resident_name =models.ForeignKey(

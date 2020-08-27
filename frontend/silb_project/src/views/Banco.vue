@@ -12,6 +12,7 @@
           <tr>
             <th class="px-4 py-2">Referência</th>
             <th class="px-4 py-2">Sesmeiros</th>
+            <th class="px-4 py-2">Ocupação</th>
             <th class="px-4 py-2">Data Requerimento</th>
             <th class="px-4 py-2">Data de Concessão</th>
             <th class="px-4 py-2">Localidade</th>
@@ -23,7 +24,8 @@
           <tbody>
           <tr v-for="(iten) in itens" v-bind:key="iten.id">
             <td>{{ iten.record_id}}</td> <!-- add referencia -->
-            <td>{{ iten.owners}}</td>
+            <td>{{ iten.owners}}</td> <!-- add nome -->
+            <td>{{ iten.owners}}</td><!-- add ocupação -->
             <td>{{ iten.dateRequest | formatDate }}</td>
             <td>{{ iten.confirmation }}</td> <!-- add data concessão -->  <!-- add '| formatDate' -->
             <td>{{ iten.record_id }}</td> <!-- add localidade -->
