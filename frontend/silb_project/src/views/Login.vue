@@ -22,7 +22,11 @@ import firebase from "firebase";
 		data() {
 			return {
 				email: '',
-				senha: ''
+				senha: '',
+        erro:{"auth/wrong-password":"A senha é inválida ou o usuário não possui uma senha",
+          "auth/invalid-email":"E-mail Invalido",
+          "auth/user-not-found":"User Não Existe"
+        }
 			};
 		},
 		methods: {
@@ -33,7 +37,7 @@ import firebase from "firebase";
               alert(user)
             },
             err => {
-              // alert(this.erro[err.code])
+              alert(this.erro[err.code])
               console.log(err)
             }
         )
