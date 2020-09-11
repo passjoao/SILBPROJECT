@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import CadastroUsuario from '../modles/cadastro/CadastroUsuario.vue'
-import Dashboard from "../modles/admin/Dashboard";
+import CadastroUsuario from '../modules/cadastro/CadastroUsuario.vue'
+import Dashboard from "../modules/admin/Dashboard";
 import Banco from "../views/Banco";
 import Login from '../views/Login';
-import cadastro from '../views/cadastro';
+import AddSesmaria from '@/modules/admin/FormSesmarias.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -20,16 +20,16 @@ Vue.use(VueRouter)
     component: Dashboard
   },
   {
+    path: '/addsesmaria',
+    name: 'AddSesmaria',
+    component: AddSesmaria
+  },
+  {
     path: '/cadastro',
     name: 'CadastroUsuario',
     component: CadastroUsuario
   },
-  {
-    path: '/cadastrot',
-    name: 'cadastro',
-    component: cadastro
-  },
-  
+ 
   {
     path: '/login',
     name: 'login',

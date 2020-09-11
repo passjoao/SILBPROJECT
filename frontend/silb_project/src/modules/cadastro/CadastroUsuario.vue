@@ -1,6 +1,13 @@
 <template>
   <div class="formulario">
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+      <!-- <form>
+        <input type="text" v-model="email">
+        <input type="password" v-model="password">
+        <button @click.prevent="createUser">enviar</button>
+      </form>
+      {{email}}
+      {{password}} -->
+    <b-form>
       <b-form-group
         id="input-group-1"
         label="Endereço de e-mail:"
@@ -8,9 +15,9 @@
 
       >
         <b-form-input
-          id="input-1"
-          v-model="form.email"
-          type="email"
+          id="email"
+          v-model="email"
+          type="text"
           required
           placeholder="Insira o e-mail..."
         ></b-form-input>
@@ -22,22 +29,9 @@
         label-for="input-2">
             <b-form-input
               id="input-2"
-              v-model="form.name"
+              v-model="name"
               required
               placeholder="Insira o nome..."
-            ></b-form-input>
-      </b-form-group>
-
-      <b-form-group
-        id="input-group-3"
-        label="Usuário:"
-        label-for="input-3">
-            <b-form-input
-              id="input-3"
-              v-model="form.user"
-              type="text"
-              required
-              placeholder="Insira o nome de usuário..."
             ></b-form-input>
       </b-form-group>
 
@@ -48,8 +42,8 @@
            <b-form @submit.stop.prevent>
             <b-input
                 type="password"
-                id="input-4"
-                v-model="form.password"
+                id="password"
+                v-model="password"
                 aria-describedby="password-help-block"
                 placeholder="Inisra a senha..."></b-input>
            </b-form>
@@ -62,11 +56,13 @@
         label-for="input-5"
 
       >
+                <!-- <b-form-select id="input-12" v-model="form.defermentForm" :options="defermentForms" required></b-form-select> -->
+              
         <b-form-select
           id="input-5"
-          v-model="form.role"
+          v-model="role"
           class="mb-2 mr-sm-2 mb-sm-0"
-          :options="[{ text: 'Escolha uma função...', value: null }]"
+          :options="options"
           :value="null"
         ></b-form-select>
       </b-form-group>
@@ -79,60 +75,60 @@
       >
         <b-form-select
           id="input-6"
-          v-model="form.status"
+          v-model="status"
           class="mb-2 mr-sm-2 mb-sm-0"
-          :statusOption="[{ text: 'Status do usuário...', value: null }]"
+          :options="statusOption"
           :value="null"
         ></b-form-select>
       </b-form-group>
         <b-button-group>
-          <b-button type="submit" variant="primary">Submit</b-button>
+          <b-button type="submit" variant="primary" @click.prevent="createUser">enviar</b-button>
           <b-button type="reset" variant="danger">Reset</b-button>
         </b-button-group>
     </b-form>
+
     <!-- <b-card class="mt-3" header="Form Data Result">
       <pre class="m-0">{{ form }}</pre>
     </b-card> -->
   </div>
 </template>
 <script>
+import firebase from "firebase";
+
   export default {
     data() {
       return {
-        form: {
           email: '',
           name: '',
-          user: '',
           password: '',
           role: null,
-          status: null
-        },
-        options: ['Pesquisador Jr','Pesquisador Snr', 'Bolsista', 'Coordenador', 'visitante'],
-        statusOption: ['Ativo', 'inativo'],
+          status: null,
+        options: [{text: 'selecionar...', value: null},'Pesquisador Jr','Pesquisador Snr', 'Bolsista', 'Coordenador', 'visitante'],
+        statusOption: [{text:'selecionar...', value:null},'Ativo', 'inativo'],
         show: true
       }
     },
     methods: {
-      onSubmit(evt) {
-        evt.preventDefault()
-        alert(JSON.stringify(this.form))
-      },
-      onReset(evt) {
-        evt.preventDefault()
-        // Reset our form values
-        this.form.email = ''
-        this.form.name = ''
-        this.form.user = ''
-        this.form.password = ''
-        this.form.role = null
-        this.form.status = null
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
+      createUser () {
+        return firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then(
+          (user)=>{
+            if(user){
+              console.log(user)
+              user.updateProfile({
+                displayName: this.name,
+                role: this.role,
+                status: this.status,
+              })
+            }
         })
+        .catch(function(error) {
+            console.log(error)
+            alert(error)
+          }
+        )
       }
-    }
+    },
   }
 </script>
 <style>
