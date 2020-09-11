@@ -24,12 +24,12 @@
           </thead>
           <tbody>
           <tr v-for="(iten) in itens" v-bind:key="iten.id">
-            <td>{{ iten.record_id}}</td> <!-- add referencia -->
+            <td>{{ iten.record_id.reference}}</td> <!-- add referencia -->
             <td>{{ iten.record_id}}</td> <!-- add Capitania -->
             <td>{{ iten.owners}}</td> <!-- add nome -->
             <td>{{ iten.owners}}</td><!-- add ocupação -->
             <td>{{ iten.dateRequest | formatDate }}</td>
-            <td>{{ iten.confirmation }}</td> add data concessão  <!-- add '| formatDate' -->
+            <td>{{ iten.confirmation }}</td> <!-- add data concessão  add '| formatDate' -->
             <td>{{ iten.record_id }}</td> <!-- add localidade -->
             <td>{{ iten.record_id }}</td> <!-- add área -->
             <td>{{ iten.confirmation }}</td> <!-- add data de confirmação --> <!-- add '| formatDate' -->
