@@ -24,7 +24,7 @@
           </thead>
           <tbody>
           <tr v-for="(iten) in itens" v-bind:key="iten.id">
-            <td>{{ iten.record_id.reference}}</td> <!-- add referencia -->
+            <td>{{ iten.reference}}</td> <!-- add referencia -->
             <td>{{ iten.record_id}}</td> <!-- add Capitania -->
             <td>{{ iten.owners}}</td> <!-- add nome -->
             <td>{{ iten.owners}}</td><!-- add ocupação -->

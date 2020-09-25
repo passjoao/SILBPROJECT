@@ -6,6 +6,8 @@ import Dashboard from "../modules/admin/Dashboard";
 import Banco from "../views/Banco";
 import Login from '../views/Login';
 import AddSesmaria from '@/modules/admin/FormSesmarias.vue'
+import AddSesmeiro from '@/modules/admin/FormSesmeiro.vue'
+import AddConfirmacao from '@/modules/admin/FormConfirmation.vue'
 Vue.use(VueRouter)
 
   const routes = [
@@ -25,11 +27,20 @@ Vue.use(VueRouter)
     component: AddSesmaria
   },
   {
+    path: '/addsesmeiro',
+    name: 'AddSesmeiro',
+    component: AddSesmeiro
+  },
+  {
+    path: '/addconfirmacao',
+    name: 'AddConfirmacao',
+    component: AddConfirmacao
+  },
+  {
     path: '/cadastro',
     name: 'CadastroUsuario',
     component: CadastroUsuario
   },
- 
   {
     path: '/login',
     name: 'login',

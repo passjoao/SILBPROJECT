@@ -5,6 +5,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
 from rest_framework import viewsets
+from enum import *
 
 from .serializers import *
 
@@ -97,6 +98,8 @@ class TramitationsViewset(viewsets.ModelViewSet):
     queryset = Tramitations.objects.all()
     serializer_class = TramitationsSerializer
 
+# class TitlesViewset(viewsets.ModelViewSet):
+#     queryset = Titles.objects.all()
 
 class RequestFilter(BaseFilter):
     search_fields = {
@@ -121,20 +124,8 @@ def loaddados(request):
     if request.method == "GET":
         body_unicode = eval(request.body.decode('utf-8'))
         pesquisa = body_unicode['pesquisa']
-        landrecord = LandRecord.objects.filter(reference__contains=pesquisa, location__icontains=pesquisa)
+        landrecord = LandRecord.objects.filter(location__icontains=pesquisa)
         owner = Owner.objects.filter(name__contains=pesquisa, original_name__icontains=pesquisa)
-        request = Request.objects.filter(requestType__icontains=pesquisa)
+        request = Request.objects.filter(reference__contains=pesquisa, requestType__icontains=pesquisa)
         f = max([landrecord.count(), owner.count(),request.count()],key=int)
     return HttpResponse(json.dumps(a), content_type='application/json',status=201)
-
-#     dados = []
-#     if (request.method == "POST"):
-#         body_unicode = eval(request.body.decode('utf-8'))
-#         #referencia landrecord - reference
-#         re = LandRecord.objects.filter(reference = )
-#     #referencia landrecord - reference
-#     #localização landrecord - location
-#     #Data da Requisição request - dateRequest
-#     #Data da concessão confirmation - dateConfirmation
-#     #Sesmeiros owner - name, original_name
-    #     #Tipo de carta request - requestType

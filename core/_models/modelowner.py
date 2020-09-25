@@ -13,10 +13,10 @@ class Owner(models.Model):
     gender = models.CharField(max_length=128, choices=Gender.choices())
     occupation = models.TextField(verbose_name="Ocupação", default="NA")#criar tabela de ocpuação para relação um para muitos
     indian = models.BooleanField(default=False)
-    captaincy_resident = models.BooleanField(default=True, verbose_name="Reside em capitania")
+    captaincy_resident = models.BooleanField(default=True, verbose_name="Reside na capitania para a qual solicita?")
     captaincy_resident_name =models.ForeignKey(
         Captaincy, on_delete=models.SET_NULL, null=True,
-        related_name='Capitania'
+        related_name='Capitania', blank=True
     )
     matrialStatus = models.CharField(max_length=128, choices=MatrialStatus.choices(), default=MatrialStatus.choices())
     secular_clergy = models.BooleanField(default=False)

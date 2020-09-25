@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
+import datetime
 
-from core._models.modelconfirmation import Confirmation
 from core._models.modeldeferment import Deferment
 from core._models.modeldemands import Demands
 from core._models.modelfiles import Files
@@ -12,12 +12,14 @@ from core._models.modelowner import Owner
 from core.enum import RequestType
 
 
-
 class Request(models.Model):
+    reference = models.CharField(max_length=10, unique=True, verbose_name="Referência", blank=True, null=True, default="")
+    oldReference = models.CharField(max_length=10, unique=True, verbose_name="Referência da SILB antiga", default="")
     dateRequest = models.DateField()
+    dateConcession = models.DateField(verbose_name="Data de concessão", default=datetime.date.today)
     same_measure = models.BooleanField(default=False, verbose_name="Mesma medida")
     requestType = models.CharField(
-        max_length=128, choices=RequestType.choices(), verbose_name='Tipo de requisição'
+        max_length=128, verbose_name='Tipo de requisição'
     )
     record_id = models.ForeignKey(
         LandRecord, on_delete=models.SET_NULL, related_name='request', null=True, verbose_name='Sesmaria'
@@ -37,13 +39,16 @@ class Request(models.Model):
     deferment = models.ForeignKey(
         Deferment, on_delete=models.SET_NULL, related_name='request', null=True, verbose_name='Deferimento'
     )
-    confirmation = models.ForeignKey(
-        Confirmation, on_delete=models.SET_NULL, related_name='request', null=True, verbose_name='Confirmação'
-    )
 
     def get_absolute_url(self):
         """Retorna a url para acessar uma instancia específica de MyModelName."""
         return reverse('request-detail', args=[str(self.id)])
 
     def __str__(self):
-        return self.record_id.reference
+        return self.reference
+
+    def save(self, *args, **kwargs): 
+        capi = self.record_id.captaincy.initials
+        index = (Request.objects.filter(record_id__captaincy__initials = capi).count()+1)
+        self.reference = (capi +" "+ str(index))
+        super(Request, self).save(*args, **kwargs) 

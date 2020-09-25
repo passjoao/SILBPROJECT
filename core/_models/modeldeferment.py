@@ -13,9 +13,8 @@ class Deferment(models.Model):#classe pada parte de deferimento da carta e trami
     comments = models.TextField()
     privileged_observations = models.TextField()
     sources = models.TextField(verbose_name="Fonte")#referencia do documento físico
-    authority = models.ForeignKey(
-        Authority, on_delete=models.SET_NULL, related_name='authority', null = True
-    )
+    authority = models.ManyToManyField(
+        Authority, related_name='authority', verbose_name='Autoridades'    )
     tramitations = models.ForeignKey(
         'Tramitations', on_delete=models.SET_NULL, related_name='tramitations', null=True
     )
