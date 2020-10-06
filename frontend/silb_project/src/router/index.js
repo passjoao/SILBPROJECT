@@ -2,7 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import CadastroUsuario from '../modules/cadastro/CadastroUsuario.vue'
-import Dashboard from "../modules/admin/Dashboard";
+import AtualizarUsuario from '../modules/cadastro/AtualizarCadastro.vue'
+import Dashboard from "../modules/admin/Dashboard/Dashboard";
 import Banco from "../views/Banco";
 import Login from '../views/Login';
 import AddSesmaria from '@/modules/admin/FormSesmarias.vue'
@@ -20,6 +21,10 @@ Vue.use(VueRouter)
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard
+  },
+  {
+    path: '*',
+    redirect: '/'
   },
   {
     path: '/addsesmaria',
@@ -42,7 +47,12 @@ Vue.use(VueRouter)
     component: CadastroUsuario
   },
   {
-    path: '/login',
+    path: '/AtualizarUsuario',
+    name: 'AtualizarUsuario',
+    component: AtualizarUsuario
+  },
+  {
+    path: '/admin',
     name: 'login',
     component: Login
   },
@@ -75,7 +85,7 @@ Vue.use(VueRouter)
     path: '/about',
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  },
 ]
 
 const router = new VueRouter({

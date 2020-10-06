@@ -180,6 +180,8 @@
 
             </b-tab>
             <b-tab title="Justificativas">
+              <input v-model="search">
+              {{search}}
               <b-form-select v-model="form.justifications" :options="justifications" multiple search :select-size="4"></b-form-select>
             </b-tab>
             <b-tab title="Exigências">
@@ -189,12 +191,13 @@
           </b-card>
         </div>
         <b-button variant="primary" @click="submitPost">Enviar</b-button>
-        <b-button type="reset" variant="danger">Cancelar</b-button>
+        <b-button type="reset" variant="danger" onclick="window.location.href='/dashboard'">Cancelar</b-button>
       </b-form>
     </div>
 </template>
 
 <script>
+import firebase from 'firebase'
 import listLandHistory from '@/util/const.js'
 import urlBase from '@/main.js'
 const axios = require('axios')
@@ -204,6 +207,7 @@ export default {
       return {
         options:[],
         selected: null,
+        search:null,
         form: {
           reference: null,
           oldReference: null,
@@ -260,7 +264,23 @@ export default {
         deferment:null,
       }
     },
+    watch: {
+      search:function(val, oldVal){
+        this._search()
+        val;
+        oldVal;
+      }
+    },
     mounted () {
+      firebase.auth().onAuthStateChanged(user=>{
+            console.log(user)
+            if (user){
+                this.nameuser = user.displayName
+            } else{
+                alert("Faça login para acessar essa página!!"); 
+                window.location.href="/admin";
+            }
+        });
       axios.get(urlBase + 'captaincy/').then(res=>{
         res.data.forEach(
          (d)=>{
@@ -275,7 +295,7 @@ export default {
          (d)=>{
            this.justifications.push({value: d.id, text: d.justification})
          }
-        )       
+        )
       }).catch(erro=>{          
           console.log(erro)
       }),
@@ -299,6 +319,16 @@ export default {
       })
     },
     methods: {
+      _search(){
+        // this.justifications.map();
+        if(this.search){
+        return this.justifications.filter((item)=>{
+          return item.text.startsWith(this.search);
+        })
+        }else{
+          return this.justifications;
+        }
+      },
       formatNames(files) {
         if (files.length === 1) {
           return files[0].name

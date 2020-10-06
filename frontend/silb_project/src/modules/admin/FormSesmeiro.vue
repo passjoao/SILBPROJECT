@@ -60,12 +60,13 @@
             </b-form-group>   
           </div>
         <b-button variant="primary" @click="ownerPost">Enviar</b-button>
-        <b-button type="reset" variant="danger">Cancelar</b-button>
+        <b-button type="reset" variant="danger" onclick="window.location.href='/dashboard'">Cancelar</b-button>
   
     </div>    
 </template>
 
 <script>
+import firebase from 'firebase'
 import urlBase from '@/main.js'
 const axios = require('axios')
 export default {
@@ -96,6 +97,15 @@ export default {
         }
     },
     mounted () {
+      firebase.auth().onAuthStateChanged(user=>{
+            console.log(user)
+            if (user){
+                this.nameuser = user.displayName
+            } else{
+                alert("Faça login para acessar essa página!!");
+                window.location.href="/admin";
+            }
+        });
       axios.get(urlBase + 'captaincy/').then(res=>{
         res.data.forEach(
          (d)=>{

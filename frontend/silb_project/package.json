@@ -12,14 +12,18 @@
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.15.0",
     "core-js": "^3.6.5",
-    "firebase": "^7.19.1",
+    "firebase": "^7.21.1",
     "mdbvue": "^6.7.1",
     "moment": "^2.27.0",
+    "react": "^16.13.1",
+    "styled-components": "^5.2.0",
     "tailwindcss": "^1.4.6",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
+    "vue-multiselect": "^2.1.6",
     "vue-pdf": "^4.1.0",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "vue-styled-components": "^1.5.1"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",

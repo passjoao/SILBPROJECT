@@ -34,6 +34,20 @@
             <b-card>Download do PDF: <a class="link" href="PDFs/ordenacoesmanuelinas.pdf">Ordenações Manuelinas</a> </b-card>
           </b-collapse>
         </div>
+        <div class="item">
+            <div class="text-justify cabecalho">Tabela das Ordens Régias Complementares</div>
+            <b-button v-on:click="evento5" v-b-toggle.collapse-5 variant="secondary"><span id="btn5">Expandir</span></b-button>
+          <b-collapse id="collapse-5">
+            <b-card>Download do PDF: <a class="link" href="PDFs/tabelanova.pdf">Tabela das Ordens Régias Complementares</a> </b-card>
+          </b-collapse>
+        </div>
+        <div class="item">
+            <div class="text-justify cabecalho">Tabela comparativa das leis de sesmarias</div>
+            <b-button v-on:click="evento6" v-b-toggle.collapse-6 variant="secondary"><span id="btn6">Expandir</span></b-button>
+          <b-collapse id="collapse-6">
+            <b-card>Download do PDF: <a class="link" href="PDFs/tabelmon.pdf">Tabela comparativa das leis de sesmarias</a> </b-card>
+          </b-collapse>
+        </div>
     </div>
 </template>
 
@@ -66,6 +80,16 @@ data() {
         },
         evento4: function() {
             var elem = document.getElementById("btn4");
+            if(elem.textContent == "Fechar") elem.textContent = "Expandir";
+            else elem.textContent = "Fechar";        
+        },
+        evento5: function() {
+            var elem = document.getElementById("btn5");
+            if(elem.textContent == "Fechar") elem.textContent = "Expandir";
+            else elem.textContent = "Fechar";        
+        },
+        evento6: function() {
+            var elem = document.getElementById("btn6");
             if(elem.textContent == "Fechar") elem.textContent = "Expandir";
             else elem.textContent = "Fechar";        
         }

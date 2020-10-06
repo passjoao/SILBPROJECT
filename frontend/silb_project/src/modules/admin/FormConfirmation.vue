@@ -16,19 +16,19 @@
             </b-form-group>
 
             <b-form-checkbox id="concessionPresential-ipt" v-model="form.concessionPresential" name="concessionPresential-checkbox" true-value="Y" false-value="N">
-                O requerimento da concessão está presente na carta de confirmação
+                A petição da concessão está presente na carta de confirmação
             </b-form-checkbox>
 
             <b-form-checkbox id="concessionPresential-ipt" v-model="form.concessionPresential" name="concessionPresential-checkbox" true-value="Y" false-value="N">
-                O requerimento da confirmação está presente na carta de confirmação
+                A petição da confirmação está presente na carta de confirmação
             </b-form-checkbox>
 
             <b-form-checkbox id="lisbon-ipt" v-model="form.confirmationLisbon" name="confirmationLisbon-checkbox" true-value="Y" false-value="N">
-                A carta confirmada em lisboa foi registrada na capitania onde se localiza
+                A carta confirmada em Lisboa foi registrada na capitania onde se localiza
             </b-form-checkbox>
 
             <b-form-checkbox id="concessionEqual-ipt" v-model="form.concessionEqual" name="concessionEqual-checkbox" true-value="Y" false-value="N">
-                O requerimento da concessão é igual ao da confirmação
+                A petição da concessão é igual ao da confirmação
             </b-form-checkbox>
 
             <b-form-group id="kingName" label="Rei mencionado na carta" label-for="kingName" class="group">
@@ -44,7 +44,7 @@
             </b-form-group>
 
             <b-form-checkbox id="registerMeiasAnatas-ipt" v-model="form.registerMeiasAnatas" name="registerMeiasAnatas-checkbox" true-value="Y" false-value="N">
-               Houve meias anatas?
+               Houve cobrança das meias anatas?
             </b-form-checkbox>
 
             <b-form-group id="anatas" label="Valor cobrado da meias anatas" label-for="meiasAnatas" class="md-6">
@@ -60,11 +60,12 @@
             </b-form-group>
 
             <b-button variant="primary" @click="submitPost">Enviar</b-button>
-            <b-button type="reset" variant="danger">Cancelar</b-button>
+            <b-button type="reset" variant="danger" onclick="window.location.href='/dashboard'">Cancelar</b-button>
         </div>
     </div>
 </template>
 <script>
+import firebase from 'firebase'
 import urlBase from '@/main.js'
 const axios = require('axios')
 export default {
@@ -92,6 +93,15 @@ export default {
         }
     },
     mounted() {
+      firebase.auth().onAuthStateChanged(user=>{
+            console.log(user)
+            if (user){
+                this.nameuser = user.displayName
+            } else{
+                alert("Faça login para acessar essa página!!");
+                window.location.href="/admin";
+            }
+        });
         axios.get(urlBase + 'request/').then(res=>{
         this.request.push({'text':"selecionar....", 'value': null, disabled:true}) 
         res.data.forEach(

@@ -18,7 +18,7 @@
 <script>
 import firebase from "firebase";
 	export default{
-		name: "login",
+		name: "Login",
 		data() {
 			return {
 				email: '',
@@ -32,17 +32,18 @@ import firebase from "firebase";
 		methods: {
       login () {
         return firebase.auth().signInWithEmailAndPassword(this.email,this.senha).then(
-            user =>{
-              console.log(user)
-              alert(user)
+            ()=>{
+              window.location.href="/dashboard";
             },
             err => {
-              alert(this.erro[err.code])
-              console.log(err)
+              alert(this.erro[err.code]);
+              console.log(err);
             }
         )
       }
-		}
+    },
+    mounted() {
+    },  
 			
 		
 	};
