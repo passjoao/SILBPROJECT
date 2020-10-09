@@ -180,12 +180,28 @@
 
             </b-tab>
             <b-tab title="Justificativas">
-              <input v-model="search">
-              {{search}}
-              <b-form-select v-model="form.justifications" :options="justifications" multiple search :select-size="4"></b-form-select>
+
+
+                <multiselect
+                  v-model="form.justifications"
+                  :options="justifications"
+                  :multiple="true"
+                  :close-on-select="false"
+                  placeholder="Selecionar"
+                  label="text"
+                  :key="value">
+                </multiselect>
             </b-tab>
             <b-tab title="Exigências">
-              <b-form-select v-model="form.demands" :options="demands" multiple search :select-size="4"></b-form-select>
+              <multiselect
+                  v-model="form.demands"
+                  :options="demands"
+                  :multiple="true"
+                  :close-on-select="false"
+                  placeholder="Selecionar"
+                  label="text"
+                  :value="value">
+                </multiselect>
             </b-tab>
           </b-tabs>
           </b-card>
@@ -197,15 +213,17 @@
 </template>
 
 <script>
+ import Multiselect from 'vue-multiselect'
 import firebase from 'firebase'
 import listLandHistory from '@/util/const.js'
 import urlBase from '@/main.js'
 const axios = require('axios')
 
 export default {
+    components: { Multiselect },
     data() {
       return {
-        options:[],
+        options:["a", "b"],
         selected: null,
         search:null,
         form: {
@@ -258,6 +276,8 @@ export default {
         areaTypes: ['Léguas Quadradas' , 'Braças Quadradas'],
         justifications:[],
         demands:[],
+        just:[],
+        deman:[],
         show: true,
         record_id: null,
         tramitations: null,
@@ -360,6 +380,13 @@ export default {
         })
       },
       async submitPost(){
+        this.form.demands.forEach(res => {
+          this.deman.push(res.value);
+        });
+        this.form.justifications.forEach(res => {
+          this.just.push(res.value);
+        });
+        console.log(this.deman)
         await axios.post(urlBase+'landrecord/',{
           "location": this.form.location,
           "nearest_river": this.form.nearest_river,
@@ -425,8 +452,8 @@ export default {
           "medias": [1],
           "files": [1],
           "owners": this.form.owners,
-          "justification": this.form.justifications,
-          "demands": this.form.demands,
+          "justification": this.just,
+          "demands": this.deman,
         }).then(
         ).catch(err=>{
           console.log(err)
@@ -435,7 +462,7 @@ export default {
     }
   }
 </script>
-
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style scoped>
   .formStyle{
     max-width: 900px;
