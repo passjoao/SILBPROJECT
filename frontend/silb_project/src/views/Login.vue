@@ -43,6 +43,11 @@ import firebase from "firebase";
       }
     },
     mounted() {
+      firebase.auth().onAuthStateChanged(user=>{
+            if (user){
+                window.location.href="/dashboard";
+            }
+        });
     },  
 			
 		

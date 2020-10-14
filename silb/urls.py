@@ -20,7 +20,6 @@ router.register(r'api/v1/landrecord', LandRecordViewset)
 router.register(r'api/v1/owner', OwnerViewset)
 router.register(r'api/v1/religiousorder', ReligiousOrderViewset)
 router.register(r'api/v1/tramitations', TramitationsViewset)
-# router.register(r'api/v1/titles', TitlesViewset)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

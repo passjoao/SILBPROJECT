@@ -284,13 +284,6 @@ export default {
         deferment:null,
       }
     },
-    watch: {
-      search:function(val, oldVal){
-        this._search()
-        val;
-        oldVal;
-      }
-    },
     mounted () {
       firebase.auth().onAuthStateChanged(user=>{
             console.log(user)
@@ -339,16 +332,6 @@ export default {
       })
     },
     methods: {
-      _search(){
-        // this.justifications.map();
-        if(this.search){
-        return this.justifications.filter((item)=>{
-          return item.text.startsWith(this.search);
-        })
-        }else{
-          return this.justifications;
-        }
-      },
       formatNames(files) {
         if (files.length === 1) {
           return files[0].name

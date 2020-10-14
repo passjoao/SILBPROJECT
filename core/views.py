@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 from django.http import HttpResponse
+from django.db.models import Sum
 import json
 from django.views.decorators.csrf import csrf_exempt
 from .models import *
@@ -8,7 +9,6 @@ from rest_framework import viewsets
 from enum import *
 
 from .serializers import *
-
 
 def index(request):
     """View function for home page of site."""
@@ -97,9 +97,6 @@ class ReligiousOrderViewset(viewsets.ModelViewSet):
 class TramitationsViewset(viewsets.ModelViewSet):
     queryset = Tramitations.objects.all()
     serializer_class = TramitationsSerializer
-
-# class TitlesViewset(viewsets.ModelViewSet):
-#     queryset = Titles.objects.all()
 
 class RequestFilter(BaseFilter):
     search_fields = {

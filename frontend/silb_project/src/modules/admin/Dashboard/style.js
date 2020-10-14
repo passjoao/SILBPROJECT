@@ -21,7 +21,7 @@ export const Button = styled.button`
     color: white;
     background-color:#4eb342;
     font-size: 1em;
-    margin: 0.2em 1em;
+    margin: 0.2em 4em;
     padding: 0.25em 0.8em;
     border-radius: 3px;
 `
@@ -36,6 +36,9 @@ export const GraphicsCard = styled.div`
     margin: auto 0.8em;
     border-top: 2px solid #afabab;
     border-bottom: 2px solid #afabab;
+    box-align: center;
+    position: relative;
+    margin: 0 2.3%;
 `
 export const Subtitle = styled.h3`
     font-size: 1.4em;
@@ -49,6 +52,7 @@ export const Subtitle = styled.h3`
 
 export const Graphics = styled.div`
     margin: 0.5em;
+    padding: 0.5em;
 `
 export const GraphicsRow = styled.div`
     max-height: 300px;

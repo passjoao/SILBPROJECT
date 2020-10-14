@@ -16,16 +16,59 @@
             <a href="/addconfirmacao"><Button>+ Adicionar Confirmação</Button></a>
         </ButtonGroup>
         </div>
+        {{table.captaincy}}
         <Graphics>
             <GraphicsRow>
                 <GraphicsCard>
-                    <Subtitle>Sesmeiros adicionados</Subtitle>
+                    <Subtitle>Sesmarias adicionados</Subtitle>
+                    <table>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Capitania</th>
+                                <th>Quantidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="sesmaria in table.sesmarias" :key="sesmaria.id">
+                            <td>{{sesmaria.location}}</td>
+                            <td>{{sesmaria.captaincy}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </GraphicsCard>
                 <GraphicsCard>
-                    <Subtitle>Sesmarias adicionadas</Subtitle>
+                    <Subtitle>Sesmeiros adicionados</Subtitle>
+                    <table>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Capitania</th>
+                                <th>Quantidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="confi in table.sesmeiros" :key="confi.id">
+                            <td>{{confi.name}}</td>
+                            <td>{{confi.location}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </GraphicsCard>
                 <GraphicsCard>
                     <Subtitle>Confirmações adicionadas</Subtitle>
+                    <table>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Capitania</th>
+                                <th>Quantidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="confi in table.confirmacoes" :key="confi.id">
+                            <td>{{confi.confirmationReference}}</td>
+                            <td>{{confi.location}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </GraphicsCard>
             </GraphicsRow>
             <GraphicsRow>
@@ -37,8 +80,8 @@
 
 <script>
 import firebase from 'firebase';
-// import urlBase from '@/main.js';
-// const axios = require('axios');
+import urlBase from '@/main.js';
+const axios = require('axios');
 import {Button,Content,Tittle, ButtonGroup, GraphicsCard, Subtitle, Graphics, GraphicsRow, UsersFields, UserName, UserLabel, UserMenu, ButtonUser} from '@/modules/admin/Dashboard/style';
 export default {
     name: "Dashboard",
@@ -61,7 +104,10 @@ export default {
         return {
             nameuser: null,
             table:{
-                sesmarias: null,
+                sesmarias: [],
+                sesmeiros: [],
+                confirmacoes: [],
+                captaincy: [],
             }
         }
     },
@@ -73,6 +119,46 @@ export default {
             } else{
                 window.location.href="/admin";
             }
+        });
+        //importando as Sesmarias
+        axios.get(urlBase+'landrecord/').then(res=>{
+        res.data.forEach(
+            (d)=>{
+            this.table.sesmarias.push(d)
+            }
+            )
+        }).catch(erro=>{          
+            console.log(erro)
+        });
+        axios.get(urlBase+'captaincy/').then(res=>{
+        res.data.forEach(
+            (d)=>{
+            this.table.captaincy.push(d)
+            }
+            )
+        }).catch(erro=>{          
+            console.log(erro)
+        });
+
+        //importando os sesmeiros
+        axios.get(urlBase+'owner/').then(res=>{
+        res.data.forEach(
+            (d)=>{
+            this.table.sesmeiros.push(d)
+            }
+            )    
+        }).catch(erro=>{          
+            console.log(erro)
+        });
+        //importando as confirmações
+        axios.get(urlBase+'confirmation/').then(res=>{
+        res.data.forEach(
+            (d)=>{
+            this.table.confirmacoes.push(d)
+            }
+            )    
+        }).catch(erro=>{          
+            console.log(erro)
         });
     },
     methods: {
@@ -90,5 +176,17 @@ export default {
 <style scoped>
 body, .app, template{
     background-color: aliceblue;
+}
+table{
+    width: 90%;
+    margin: 0 auto;
+}
+th{
+    text-align: center;
+}
+td{
+    text-align: center;
+    margin: auto;
+    border: solid 1px;
 }
 </style>

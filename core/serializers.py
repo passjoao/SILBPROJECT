@@ -7,7 +7,6 @@ class AuthoritySerializer(serializers.ModelSerializer):
         model = Authority
         fields = '__all__'
 
-
 class CaptaincySerializer(serializers.ModelSerializer):
     class Meta:
         model = Captaincy
