@@ -14,7 +14,7 @@
     "core-js": "^3.6.5",
     "firebase": "^7.21.1",
     "mdbvue": "^6.7.1",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "react": "^16.13.1",
     "styled-components": "^5.2.0",
     "tailwindcss": "^1.4.6",
